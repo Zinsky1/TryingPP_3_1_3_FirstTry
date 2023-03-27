@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title >User Page</title>
+</head>
+<body>
+<h2 align="center" >User Data</h2>
+<p  align="center" style="font-size: 25px" th:text="${user.getId()}">id</p>
+<p align="center" style="font-size: 25px" th:text="${user.getFirstName()}">firstname</p>
+<p align="center" style="font-size: 25px" th:text="${user.getLastName()}">lastname</p>
+<p align="center" style="font-size: 25px" th:text="${user.getEmail()}">user@email.com</p>
+<p align="center" style="font-size: 25px" th:text="${user.getRoles()}">roles</p>
+<table align="center">
+  <td>
+    <form  th:method="DELETE" th:action="@{/users/{id}(id=${user.getId()})}">
+      <input style="font-size: 30px" type="submit" value="Delete"/>
+    </form>
+  </td>
+  <td>
+    <form th:action="@{/users/{id}/edit(id=${user.getId()})}">
+      <input style="font-size: 30px" type="submit" value="Update"/>
+    </form>
+  </td>
+</table>
+<a href="/users/list"
+   title="to users list"><button class="ui-button"
+                                  style="height: complex;width:
+                                  auto;background-color:
+                                  darkolivegreen;border:
+                                  0;color: white">
+  <b><big>Back</big></b></button></a>
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Users</title>
+</head>
+<body>
+<h3>Users</h3>
+
+<!--<div th:each="user : ${users}">-->
+<!--  <a th:href="@{/users/{id}(id=${user.getId()})}"-->
+<!--     th:text="${user.getFirstName() + ' ' + user.getLastName()}">user</a>-->
+
+
+<div th:each="user : ${users}">
+  <ul   >
+    <a th:href="@{/users/{id}(id=${user.getId()})}">
+      <li th:text="${user.getFirstName() + ' ' + user.getLastName() + user.getRoles()}"
+          style="list-style-type: circle; font-size: 20px; font-family: 'Heiti SC'; font-style: normal; color: black">user</li>
+
+    </a>
+  </ul>
+</div>
+
+<br>
+<a href="/users/new"
+   title="to adding page"><button class="ui-button"
+                                  style="height: complex;width:
+                                  auto;background-color:
+                                  darkolivegreen;border:
+                                  0;color: white">
+                                  <b><big>NEW USER</big></b></button></a>
+<br>
+
+<h3 style="align-content: center" align="center">Tabled users</h3>
+<table style="align-content: center; border: black; width: auto; height: auto" align="center">
+  <tr align="center">
+    <th style="align-content: center">Firstname</th>
+    <th style="align-content: center">Lastname</th>
+    <th style="align-content: center">Email</th>
+    <th style="align-content: center">Roles</th>
+  </tr>
+  <tr th:each="user : ${users}">
+    <td style="align-content: center" th:text="${user.firstName}"></td>
+    <td style="align-content: center" th:text="${user.lastName}"></td>
+    <td style="align-content: center" th:text="${user.email}"></td>
+    <th style="align-content: center" th:text="${user.id}"></th>
+    <th style="align-content: center" th:text="${user.getRoles()}"></th>
+    <td>
+      <form th:method="DELETE" th:action="@{/users/{id}(id=${user.getId()})}">
+        <input style="border: crimson; color: black" type="submit" value="Delete"/>
+      </form>
+    </td>
+    <td>
+      <form th:action="@{/users/{id}/edit(id=${user.getId()})}">
+        <input style="border: cornflowerblue; color: black" type="submit" value="Update"/>
+      </form>
+    </td>
+
+  </tr>
+
+</table>
+
+
+</body>
+</html>
